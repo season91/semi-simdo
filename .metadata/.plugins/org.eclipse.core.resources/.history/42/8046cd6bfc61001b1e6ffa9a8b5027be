@@ -1,0 +1,5 @@
+package com.kh.simdo.common.mail;
+
+public class MailSender {
+
+}
