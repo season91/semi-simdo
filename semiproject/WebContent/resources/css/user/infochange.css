@@ -33,7 +33,6 @@ a{
    top: 0%;
    width: 100%;
    height: 10vh;
-   border-bottom: 1px solid;
 }
 
 
@@ -51,14 +50,46 @@ a{
    color: #696765;
 }
 
+.navi{
+	position: absolute;
+	top: 10vh;
+	background-color: #959493;
+	color: #DADAD9;
+	height: 5vh;
+	width: 100%;
+}
+
+/* 각메뉴들을 감싼 wrap 정렬지정 */
+.navi-wrapper{
+	height:100%;
+	display: flex;
+	justify-content: space-evenly;
+
+}
+
+/* 각메뉴의 정렬 지정*/
+.navi-wrapper>div{
+	display: flex;
+	align-items:center;
+	justify-content:center;
+	height:100%;
+	width: 200px;
+	text-align: center;
+	font-weight: bold;
+}
+
+.navi-menu{
+	cursor: pointer;
+}
+
 /* section */
 
 .content{
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
-	height: 40vh;
-	width: 60vh;
+	height: 60vh;
+	width: 65vw;
 	align-items: center;
 	position: absolute;
     top: 50%; 
@@ -66,71 +97,87 @@ a{
     transform: translate(-50%, -50%);
 }
 
-.text-login{
-	font-size: 3vh;
-}
-
-.frm_login{
+.frm_revise{
 	display: flex;
 	flex-direction: column;
-	justify-content: space-around;
-	width: 85%;
-	height: 40%;
-	align-items: center;
+	width: 100%;
+	height: 90%;
+	justify-content: space-between;
 }
 
-.lab_login{
-	width: 70%;
-	height: 4vh;
-	text-align: center;
-}
-
-.pic-login {
-    margin-right: 3%;
-}
-
-.input_login {
-    width: 80%;
-    height: 80%;
-    padding-left: 3%;
-}
-
-.btn_login{
-	background-color: rgb(000,153,255);
-	width: 70%;
-	height: 5vh;
-	color: white;
-	font-size: 1.8vh;
-}
-
-.link-login{
+.content-wrapper{
 	display: flex;
 	justify-content: space-between;
-	width: 70%;
+	height: 85%;
 }
 
-.link{
-	color: rgb(000,153,255);
-	text-decoration: underline;
-	font-size: 1.3vh;
-}
-
-.btn-wrapper{
+.div_content{
 	display: flex;
 	flex-direction: column;
-	align-items: center;
-	width: 55%
+	justify-content: space-evenly;
+	width: 40%;
 }
 
-.btn_naver-login{
-	width: 100%;
-	height: 5vh;
+.userinfo{
+	display: flex;
+	flex-direction: column;
+	border-bottom: 1px solid;
+}
+
+.userinfo-title{
 	margin-bottom: 3%;
 }
 
-.btn_kakao-login{
+.profile-img{
+	width: 180px;
+	height: 150px;
+	border: 1px solid;
+}
+
+.profile-imgs-wrapper{
 	width: 100%;
-	height: 5vh;
+	display: flex;
+	justify-content: space-between;
+}
+
+.radio-wrapper{
+	display: flex;
+	justify-content: space-between;
+	width: 80%;
+}
+
+.profile-imgs{
+	cursor: pointer;
+}
+
+.create-img{
+	background-color: #696765;
+	color: white;
+}
+
+.gender-wrapper{
+	display: flex;
+	justify-content: space-between;
+}
+
+input{
+	background-color: transparent;
+}
+
+.btn_leave{
+	background-color: #696765;
+	color: white;
+	width: 55%;
+	height: 7%;
+	align-self: center;
+}
+
+.btn_complete{
+	background-color: #696765;
+	color: white;
+	width: 45%;
+	height: 8%;
+	align-self: center;
 }
 
 /* footer */
