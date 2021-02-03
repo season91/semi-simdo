@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+
 body{
 	background-color: #DADAD9;
 	color: #696765;
@@ -63,6 +64,7 @@ body{
 	justify-content: space-between;
 
 }
+
 /* 각메뉴의 정렬 지정*/
 .navi-wrapper>div{
 	display: flex;
@@ -72,10 +74,22 @@ body{
 	width: 200px;
 	text-align: center;
 	font-weight: bold;
+	transition-duration:0.2s;
+}
+.navi-wrapper>div:hover{
+	font-size: 2vw;
 }
 .navi-wrapper a{
 	color: #DADAD9;
 }
+.input_navi-search{
+	width: 15vw;
+}
+.search-view{
+	display: flex;
+	align-items: center;
+}
+
 
 /* footer */
 .bottom{
@@ -104,12 +118,14 @@ body{
 }
 
 /* 나라별 조회 클릭시 뜨는 나라선택 창 */
+
 .navi-extend-wrapper{
 	height: 10vh;
 	background-color: #959493;
 	transition-duration:0.5s;
 	
 }
+
 .navi-extend-wrapper>ul{
 	height:100%;
 	display: flex;
@@ -130,40 +146,44 @@ body{
 .navi-extend-list:hover {
 	font-size:3vw;
 	font-weight: bold;
+	
 }
-
-
 /* 메뉴선택이 화면이동되고 조건값에 맞는 결과 화면 출력 */
-/* 나라별 선택시 전환이 된 화면에서 출력이니까..*/
-.nation-view{
-	background-color: #696765;
+
+.content{
+	display: flex;
+	flex-direction:column;
+	align-items:center;
+	min-height: 70vh;
+	margin-top: 15vh;
+}
+.mv_view_title{
+	width:100%;
+	background-color: #959493;
+	color:#DADAD9;
+	height: 4vh;
+	position: relative;
+	font-size: 2.5vh;
+	padding-top: 1vh;
+	padding-left: 5vh;
 }
 .mv_wrapper{
-	width:100vw;
-	padding-top: 10vh;
-	padding-left:10vh;
+	width:80%;
+	padding-top: 5vh;
 	padding-bottom:10vh;
 	display: flex;
-	border: 2px;
 	justify-content: flex-start;
 	flex-wrap: wrap;
 	height: 100%;
 }
 
-.content{
-	display: flex;
-	justify-content:center;
-	min-height: 70vh;
-	margin-top: 15vh;
-
-}
 
 
 .mv_view_list{
 	height:45vh;
 	display: flex;
 	flex-direction: column;
-	width: 15vw;
+	width: 24vh;
 	justify-content: space-between;
 	background-color: rgba(255,255,255,0.2);
 	padding: 10px;
@@ -171,6 +191,15 @@ body{
 	border-radius: 10px;
 	border-style:outset;
 	box-shadow: 4px 4px 2px 1px gray;
+	transition-duration:0.5s;
+	
+}
+
+
+.mv_view_list:hover{
+	background-color: white;
+	transform: scale(1.2) translateX(0) translateY(0) rotate(0deg);
+
 }
 
 .mv_view_img{
@@ -196,11 +225,12 @@ body{
 }
 
 .mv_title{
-	font-size: 1.5vw;
+	font-size: 2.5vh;
 	font-weight:bold;
 }
 
 .mv_info{
-	font-size : 1vw;
+	position:relative;
+	font-size : 1.5vh;
 	font-weight:bold;
 }
