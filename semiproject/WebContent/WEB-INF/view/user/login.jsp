@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ include file="/WEB-INF/view/include/head.jsp" %>
-
 <%@ page import="java.net.URLEncoder" %>
 <%@ page import="java.security.SecureRandom" %>
 <%@ page import="java.math.BigInteger" %>
@@ -9,16 +8,10 @@
 	<link rel="stylesheet" href="/resources/css/all.css">
 	<link rel="stylesheet" href="/resources/css/common/reset.css">
 	<link rel="stylesheet" href="/resources/css/user/login.css">
-	
-	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
-	<script type="text/javascript">
-		Kakao.init('b140a5f5d7731e0c477c0a030751f776');
-		console.log(Kakao.isInitialized());
-	</script>
 </head>
 <body>
 	<header class="header-section">
-		<a class="top-logo-text"><img style="width: 20vh; margin-left: 5%" alt="logo" src="/resources/image/logo.png"></a>
+		<a class="top-logo-text" href="/index/index.do"><img style="width: 20vh; margin-left: 5%" alt="logo" src="/resources/image/logo.png"></a>
 		<c:choose>
 			<c:when test="${empty sessionScope.user}">
 				<%-- 비로그인 상태 --%>
@@ -40,33 +33,35 @@
 	
 	<section class="content">
 		<div class="text-login">Login</div>
-		<form class="frm_login">
-			<label class="id-login lab_login"><i class="fas fa-user pic-login"></i><input class="input_login" type="email" name="userId" placeholder="username" required="required"></label>
-			<label class="pw-login lab_login"><i class="fas fa-key pic-login"></i><input class="input_login" type="password" name="password" placeholder="****" required="required"></label>
+		<form class="frm_login" action="${context}/user/loginimpl.do">
+			<label class="id-login lab_login"><i class="fas fa-user pic-login"></i><input class="input_login" type="email" name="userEmail" placeholder="simdo@simdo.com" required="required"></label>
+			<label class="pw-login lab_login"><i class="fas fa-key pic-login"></i><input class="input_login" type="password" name="userPw" placeholder="****" required="required"></label>
 			<button class="btn_login">Login</button>
 			<div class="link-login">
 				<a class="join link" href="/user/join.do">회원가입</a>
 				<a class="idpw-search link" href="/user/pwsearch.do">비밀번호 찾기</a>
 			</div>
 		</form>
+		
+		<%
+			String clientId = "YpRlcj6rjiKHlB6bWRCM";
+			String redirectURI = URLEncoder.encode("http://localhost:9090/user/naverlogin.do", "UTF-8");
+			SecureRandom random = new SecureRandom();
+			String state = new BigInteger(130, random).toString();
+			String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
+			apiURL += "&client_id=" + clientId;
+			apiURL += "&redirect_uri=" + redirectURI;
+			apiURL += "&state=" + state;
+			session.setAttribute("state", state);
+		%>
+		
+		
 		<div class="btn-wrapper">
-			<%
-				String clientId = "YOUR_CLIENT_ID";//애플리케이션 클라이언트 아이디값";
-				String redirectURI = URLEncoder.encode("https://localhost:9898/index.do", "UTF-8");
-				SecureRandom random = new SecureRandom();
-				String state = new BigInteger(130, random).toString();
-				String apiURL = "https://nid.naver.com/oauth2.0/authorize?response_type=code";
-				apiURL += "&client_id=" + clientId;
-				apiURL += "&redirect_uri=" + redirectURI;
-				apiURL += "&state=" + state;
-				session.setAttribute("state", state);
-			%>
-			<a class="btn_naver-login" href="<%=apiURL%>"><img width="100%" height="50" src="/resources/image/naver_login_logo.PNG"/></a>
+			<a class="btn_naver-login" href="<%=apiURL%>">
+				<img width="100%" height="50" src="https://static.nid.naver.com/oauth/big_g.PNG?version=js-2.0.0"/>
+			</a>
 			<a class="btn_kakao-login" href="javascript:loginWithKakao()">
-			  <img
-			    src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg"
-			    width="100%" height="50"
-			  />
+				<img src="//k.kakaocdn.net/14/dn/btqCn0WEmI3/nijroPfbpCa4at5EIsjyf0/o.jpg" width="100%" height="50"/>
 			</a>
 		</div>
 	</section>
@@ -91,14 +86,8 @@
 		</div>
 	</footer>
 	
-	<script type="text/javascript">
-		function loginWithKakao() {
-		  Kakao.Auth.authorize({
-			redirectUri : 'https://localhost:9090'
-		  });
-		  
-		  Kakao.Auth.setAccessToken(USER_ACCESS_TOKEN);
-		}
-	</script>
+	<script type="text/javascript" src="https://static.nid.naver.com/js/naveridlogin_js_sdk_2.0.0.js" charset="utf-8"></script>
+	<script src="https://developers.kakao.com/sdk/js/kakao.js"></script>
+	<script type="text/javascript" src="/resources/js/user/login.js"></script>
 </body>
 </html>
