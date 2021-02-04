@@ -1,5 +1,0 @@
-package com.kh.simdo.common.exception;
-
-public class CustomException {
-
-}
