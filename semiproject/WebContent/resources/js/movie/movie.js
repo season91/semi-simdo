@@ -4,34 +4,34 @@
 	
 	
 	let nationExtendView = ()=>{
-		let nation = ['한국','일본','미국','홍콩','영국','프랑스','중국','러시아','독일','스페인'];
-		createElement(nation);
+		let nation = ['대한민국','일본','미국','영국','프랑스','중국','러시아','독일','스페인'];
+		createElement(nation,"nation");
 	}
 	
-	let yearExtendView = ()=>{
-		let year = ['1950년대','1960년대','1970년대','1980년대','1990년대','2000년대','2010년대','2020년대'];
-		createElement(year);
+	let genreExtendView = ()=>{
+		let genre = ['드라마','액션','스릴러','가족','SF','판타지'];
+		createElement(genre,"genre");
 	}
 	
-	let createElement = (nation)=>{
+	let createElement = (extend, paramName)=>{
 		let div = document.createElement('div');
+		console.dir(paramName);
 		div.className = 'navi-extend-wrapper';
 		let ul = document.createElement('ul');
 		
-		for(let i = 0; i < nation.length; i++){
-			let li = document.createElement('li');
-			li.className = "navi-extend-list";
+		for(let i = 0; i < extend.length; i++){
 			let a = document.createElement('a');
-			a.href = location.reload;
-			a.innerHTML = nation[i];
-			li.appendChild(a);
-			ul.appendChild(li);
+			a.className = "navi-extend-list";
+			a.innerHTML = extend[i];
+			a.href = "/movie/naviview.do?"+paramName+"="+extend[i];
+			ul.appendChild(a);
 		}
 		div.append(ul);
 		list.appendChild(div);
+
 	}
 	
-
+	
 	let delView = () =>{
 		document.querySelector('.navi-extend-wrapper').outerHTML = '';
 	}
@@ -48,14 +48,14 @@
 
 	});
 	
-	document.querySelector('.year-view').addEventListener('click',()=>{
+	document.querySelector('.genre-view').addEventListener('click',()=>{
 		if(check == 'no'){
-			yearExtendView('연도별 조회 테스트');
+			genreExtendView();
 			check = 'yes';
 		} else {
 			delView();
 			check = 'no';
 		}
 	});
-
+	
 })();
