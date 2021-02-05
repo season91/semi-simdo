@@ -45,7 +45,7 @@ public class MailSender {
 		
 		private Session getSession() {
 			// 1. 네이버 smtp 서버를 사용하기 위해 인증정보 - 네이버 id, pw 필요
-			PasswordAuthentication pa = new PasswordAuthentication("choayoung91@naver.com", "");
+			PasswordAuthentication pa = new PasswordAuthentication("hhieathdd_@naver.com", "Simdodatabase4");
 			
 			// 2. 사용할 smtp 서버 정보를 작성 - smtp 서버이름, 포트, tls통신 가능 여부, 사용자 인증 여부
 			// session 정보에는 getInstance(Properties props, Authenticator authenticator) 이렇게 2개가 들어간다.

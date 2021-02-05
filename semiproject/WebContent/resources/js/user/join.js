@@ -153,6 +153,7 @@ document.querySelector('.frm_join').addEventListener('submit', (e)=>{
 	if(!(regExp.test(password))){
 		e.preventDefault();
 		alert('비밀번호는 숫자,영문자,특수문자 조합의 8글자 이상이어야 합니다.');
+		pwCheckFlg = false;
 		document.querySelector('#userPw').value = '';
 		document.querySelector('#userPwCheck').value = '';
 	}

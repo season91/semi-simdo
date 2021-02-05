@@ -29,7 +29,7 @@ function loginWithKakao(){
 					}).then((msg) => {
 						if(msg == 'success'){
 							alert('카카오 계정으로 로그인에 성공했습니다.');
-							location.href = "/index/index.do";
+							location.href = "/index.do";
 						}else{
 							alert('카카오 계정으로 로그인에 실패했습니다.');
 							location.href = "/user/login.do";

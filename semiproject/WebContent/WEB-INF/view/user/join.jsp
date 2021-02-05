@@ -18,7 +18,7 @@
 </head>
 <body>
 	<header class="header-section">
-		<a class="top-logo-text" href="/index/index.do"><img style="width: 20vh; margin-left: 5%" alt="logo" src="/resources/image/logo.png"></a>
+		<a class="top-logo-text" href="/index.do"><img style="width: 20vh; margin-left: 5%" alt="logo" src="/resources/image/logo.png"></a>
 		<c:choose>
 			<c:when test="${empty sessionScope.user}">
 				<%-- 비로그인 상태 --%>
@@ -39,7 +39,7 @@
 	</header>
 	
 	<section class="content">
-		<div class="top_content underline">SIMDO:wm</div>
+		<div class="top_content underline"><img style="width: 15vh;" alt="logo" src="/resources/image/logo.png"></div>
 		<div class="btn-wrapper underline">
 			<%
 				String clientId = "YpRlcj6rjiKHlB6bWRCM";
@@ -67,7 +67,7 @@
 			<div class="join-info underline">
 				<label class="label_join">이메일</label>
 				<div class="email-wrapper">
-					<input class="input_join" id="userEmail" type="email" name="userEmail" placeholder="Enter email address" required="required">
+					<input class="input_join input_width" id="userEmail" type="email" name="userEmail" placeholder="Enter email address" required="required">
 					<button class="btn_emailCheck" type="button" onclick="emailCheck()">중복 확인</button>
 				</div>
 			</div>
@@ -78,7 +78,7 @@
 			<div class="join-info underline">
 				<label class="label_join">비밀번호 확인</label>
 				<div class="pwCheck-wrapper">
-					<input class="input_join" id="userPwCheck" type="password" name="userPwCheck" placeholder="Confirm password" required="required">
+					<input class="input_join input_width" id="userPwCheck" type="password" name="userPwCheck" placeholder="Confirm password" required="required">
 					<button class="btn_pwCheck" type="button" onclick="pwCheck()">확인</button>
 				</div>
 			</div>

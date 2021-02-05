@@ -28,6 +28,16 @@ import com.kh.simdo.user.model.vo.User;
  * @work : 로그인, 카카오 계정으로 로그인, 네이버 아이디로 로그인, 회원가입, 이메일 인증,
  * 			사용자 이용 약관, 만 14세 이상 확인, 회원 정보 변경, 비밀번호 찾기, 로그아웃, 회원 탈퇴
  */
+
+/**
+ * 
+ * @Author : MinHee
+ * @Date : 2021. 2. 5.
+ * @work : infoChange 메서드 작성, mywritelist jsp와 css 수정, infochange 회원 탈퇴 기능 오류 수정,
+ * 			login.jsp 의 css 수정, join.jsp 상단 SIMDO:wm 로고로 수정, join.jsp css 수정,
+ * 			/index.do 경로 수정
+ */
+
 @WebServlet("/user/*")
 public class UserController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
@@ -85,8 +95,7 @@ public class UserController extends HttpServlet {
 			joinImpl(request, response);
 			break;
 		case "infochange.do" : 
-			request.getRequestDispatcher("/WEB-INF/view/user/infochange.jsp")
-			.forward(request, response);
+			infoChange(request, response);
 			break;
 		case "infochangeimpl.do" : 
 			infoChangeImpl(request, response);
@@ -129,7 +138,7 @@ public class UserController extends HttpServlet {
 		if(user != null) {
 			request.getSession().setAttribute("user", user);
 			request.setAttribute("alertMsg", "로그인에 성공했습니다.");
-			request.setAttribute("url", "/index/index.do");
+			request.setAttribute("url", "/index.do");
 			
 			request
 			.getRequestDispatcher("/WEB-INF/view/common/result.jsp")
@@ -193,7 +202,6 @@ public class UserController extends HttpServlet {
 			con.setRequestMethod("GET");
 			int responseCode = con.getResponseCode();
 			BufferedReader br;
-			System.out.println("responseCode="+responseCode);
 			if(responseCode==200) { // 정상 호출
 			  	br = new BufferedReader(new InputStreamReader(con.getInputStream()));
 			} else {  // 에러 발생
@@ -247,7 +255,7 @@ public class UserController extends HttpServlet {
 		
 		if(userService.selectUserByEmail(userEmail) != null) {
 			request.setAttribute("alertMsg", "네이버 아이디로 로그인에 성공했습니다.");
-			request.setAttribute("url", "/index/index.do");
+			request.setAttribute("url", "/index.do");
 			
 			request
 			.getRequestDispatcher("/WEB-INF/view/common/result.jsp")
@@ -356,6 +364,11 @@ public class UserController extends HttpServlet {
 		}
 	}
 	
+	private void infoChange(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("/WEB-INF/view/user/infochange.jsp")
+		.forward(request, response);
+	}
+	
 	private void infoChangeImpl(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String userProfile = request.getParameter("userProfile");
 		String userNm = request.getParameter("userNm");
@@ -408,7 +421,7 @@ public class UserController extends HttpServlet {
 	private void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.getSession().removeAttribute("user");
 		request.setAttribute("alertMsg", "로그아웃 되었습니다.");
-		request.setAttribute("url", "/index/index.do");
+		request.setAttribute("url", "/index.do");
 		
 		request
 		.getRequestDispatcher("/WEB-INF/view/common/result.jsp")

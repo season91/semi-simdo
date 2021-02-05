@@ -9,7 +9,7 @@
 <body>
 	<div class="header-wrapper">
 		<header class="header-section">
-			<a class="top-logo-text" href="/index/index.do"><img class="top-logo-img" style="width: 20vh; margin-left: 5%" alt="logo" src="/resources/image/logo.png"></a>
+			<a class="top-logo-text" href="/index.do"><img class="top-logo-img" style="width: 20vh; margin-left: 5%" alt="logo" src="/resources/image/logo.png"></a>
 			<c:choose>
 			<c:when test="${empty sessionScope.user}">
 				<%-- 비로그인 상태 --%>
@@ -158,5 +158,28 @@
 	</footer>
 	
 	<script type="text/javascript" src="/resources/js/user/infochange.js"></script>
+	<script type="text/javascript">
+		function mySubmit(){
+			let userEmail = "${sessionScope.user.userEmail}";
+			let headerObj = new Headers();
+			headerObj.append('content-type', "application/x-www-form-urlencoded");
+			console.dir(userEmail);
+			fetch("/user/quit.do",{
+				method : "post",
+				headers : headerObj,
+				body : "userEmail="+userEmail
+			}).then(response => {
+				if(response.ok){
+					alert('회원 탈퇴가 완료되었습니다.');
+					location.href = "/index.do";
+				}else{
+					alert('회원 탈퇴 중 에러가 발생했습니다.');
+				}
+			}).catch(error=>{
+				error.alertMessage();
+			})
+			
+		}
+	</script>
 </body>
 </html>

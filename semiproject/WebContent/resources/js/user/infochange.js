@@ -13,28 +13,6 @@ document.querySelector('.create-img').addEventListener('click',(event)=>{
 	})
 })
 
-function mySubmit(){
-	let userEmail = "${sessionScope.user.userEmail}";
-	let headerObj = new Headers();
-	headerObj.append('content-type', "application/x-www-form-urlencoded");
-	
-	fetch("/user/quit.do",{
-		method : "post",
-		headers : headerObj,
-		body : "userEmail="+userEmail
-	}).then(response => {
-		if(response.ok){
-			alert('회원 탈퇴가 완료되었습니다.');
-			location.href = "${context}/index.do";
-		}else{
-			alert('회원 탈퇴 중 에러가 발생했습니다.');
-		}
-	}).catch(error=>{
-		error.alertMessage();
-	})
-	
-}
-
 document.querySelector('.frm_revise').addEventListener('submit',(e)=>{
 	let password = document.querySelector('#userPw').value;
 	let pwRegExp = /^(?!.*[ㄱ-힣])(?=.*\W)(?=.*\d)(?=.*[a-zA-Z])(?=.{8,})/;
